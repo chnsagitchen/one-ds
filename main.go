@@ -1,7 +1,17 @@
 package main
 
-import "github.com/one-ds/dsio"
+import (
+	"github.com/chnsagitchen/one-ds/dsio"
+	"fmt"
+)
 
 func main() {
-	dsWALWriter := dsio.DSLogRecord{}()
+	record := dsio.DSLogRecord{
+		"hello",
+		"world",
+	}
+	dsw := dsio.New()
+	offset, _ := dsw.WriteRecord(&record)
+	fmt.Printf("offset: %d", offset)
+	dsw.Stop()
 }
